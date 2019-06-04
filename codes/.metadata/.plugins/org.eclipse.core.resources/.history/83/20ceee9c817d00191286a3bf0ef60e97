@@ -1,0 +1,36 @@
+package test1;
+
+import java.util.Set;
+
+
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import java.util.Iterator;
+
+public class Selenium {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.setProperty("webdriver.chrome.driver", "E:\\Softwares\\chromedriver_win32\\chromedriver.exe");
+		WebDriver driver= new ChromeDriver();
+		String url= "https://phptravels.com/demo/";
+		driver.get(url);
+		driver.findElement(By.xpath("//*[@id=\"main-menu\"]/ul/li[8]/a/span")).click();
+		String mainwin= driver.getWindowHandle();
+		Set<String>win=driver.getWindowHandles();
+		Iterator<String> i=win.iterator();
+		while(i.hasNext()) {
+			String child=i.next();
+			if(!mainwin.equals(child)) {
+				driver.switchTo().window(child);
+				driver.findElement(By.name("username")).sendKeys("user@phptravels.com");
+			}
+		
+		
+
+	}
+
+}
+}
